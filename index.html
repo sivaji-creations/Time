@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>సమయం – Class 2 Maths Magic, Unit 8</title>
+<style>
+:root{--ink:#26324a;--sky:#e8f4ff;--sun:#ffc94a;--coral:#ff6b57;--teal:#14a38b;--plum:#7a4cc2;--leaf:#6cbf3f;--paper:#fffdf7;--line:#d9e3f0}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Noto Sans Telugu","Trebuchet MS",sans-serif;color:var(--ink);background:var(--sky);font-size:18px;line-height:1.6; overflow-x: hidden;}
+h1,h2,h3{font-family:"Noto Sans Telugu","Arial Rounded MT Bold",sans-serif;margin:.2em 0}
+button{font:inherit;cursor:pointer;border:0;border-radius:14px;padding:.5em 1em;background:var(--plum);color:#fff;font-weight:700;box-shadow:0 4px 0 rgba(0,0,0,.18);transition:transform .08s}
+button:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:4px solid var(--sun);outline-offset:2px}
+.bar{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;background:var(--ink);padding:8px 10px;color:#fff;font-size:15px}
+.bar select{font:inherit;border-radius:10px;padding:.3em}
+.bar .on{background:var(--teal)}.bar .off{background:#6b7590}
+.stop{background:var(--coral)}
+.hero{background:linear-gradient(135deg,#ff8fb1,#ffc94a 55%,#8fd6ff);padding:28px 16px 34px;text-align:center}
+.hero h1{font-size:clamp(34px,7vw,60px);margin:0;letter-spacing:.5px;color:#3b1f6b}
+.hero p{max-width:640px;margin:8px auto 14px;font-size:20px}
+.big{background:var(--coral);font-size:22px;padding:.6em 1.4em}
+main{max-width:980px;margin:auto;padding:14px}
+section{background:var(--paper);border-radius:24px;padding:20px;margin:18px 0;border:3px solid var(--line);position:relative}
+section.speaking,.speaking{box-shadow:0 0 0 5px var(--sun)}
+.tag{display:inline-block;background:var(--sun);border-radius:999px;padding:2px 12px;font-size:14px;font-weight:700;margin-bottom:6px}
+.rd{float:right;background:var(--teal);font-size:16px}
+.how{background:#fff6d8;border-left:8px solid var(--sun);border-radius:10px;padding:8px 12px;margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.dom{border-radius:20px;padding:14px;cursor:pointer;border:3px solid transparent;text-align:left;transition:transform 0.2s}
+.dom:hover{border-color:var(--ink);transform:scale(1.02)}
+.dom.active{box-shadow:0 0 0 4px var(--sun);transform:scale(1.02)}
+.dom .ic{font-size:42px}
+.dom b{display:block;font-size:20px}
+.dom small{display:block;margin-top:6px;font-size:15px}
+.d1{background:#ffe3d6}.d2{background:#e1ddff}.d3{background:#d9f5e4}.d4{background:#d8efff}.d5{background:#ffe0f1}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:8px 0}
+.chip{background:#fff;color:var(--ink);border:3px solid var(--line);box-shadow:none;padding:.3em .8em}
+.chip.sel{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip.ok{background:var(--leaf);color:#fff;border-color:var(--leaf)}.chip.no{background:#ffd0ca}
+input[type=range]{width:200px;accent-color:var(--coral)}
+.arr{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0;min-height:50px; justify-content:center;}
+.grp{border:3px dashed var(--teal);border-radius:16px;padding:4px 8px;background:#effcf8;font-size:24px;max-width:100%;word-break:break-all;text-align:center;}
+.eq{font-size:26px;font-weight:700; margin-top:10px; text-align:center;}
+table{border-collapse:collapse;width:100%;max-width:560px; margin-top:10px;}
+td,th{padding:6px 10px;border-bottom:2px solid var(--line);font-size:20px;text-align:center}
+tr{cursor:pointer}tr:hover td,tr.speaking td{background:#fff0b8}
+.q{font-size:21px;font-weight:700}
+.opts{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.opts button{background:#fff;color:var(--ink);border:3px solid var(--ink);box-shadow:0 4px 0 var(--ink);font-size:22px}
+.opts .ok{background:var(--leaf);color:#fff;border-color:var(--leaf)}
+.opts .no{background:#ffd0ca;animation:sh .3s}
+@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.msg{min-height:32px;font-weight:700;color:var(--teal); text-align:center;}
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:14px;display:none;z-index:30;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);font-size:16px}
+.conf{position:fixed;bottom:-40px;font-size:34px;z-index:41;pointer-events:none;animation:rise 1.8s ease-out forwards}
+@keyframes rise{to{transform:translateY(-115vh) rotate(420deg);opacity:.3}}
+.prog{height:12px;background:var(--line);border-radius:8px;overflow:hidden;margin-bottom:8px}.prog i{display:block;height:100%;background:var(--teal);transition:width .4s}
+.score{font-size:30px;font-weight:900}.score b{color:var(--coral)}
+.lv{font-size:24px;font-weight:700;margin:4px 0 10px;color:var(--plum)}
+
+/* Drag & Drop Styles */
+.drag-container { display: flex; flex-direction: column; align-items: center; width: 100%; }
+.source-area { width: 100%; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; background: #fff; padding: 15px; border-radius: 10px; border: 2px solid var(--line); min-height: 100px; margin-bottom: 15px; }
+.draggable { cursor: grab; touch-action: none; user-select: none; font-size: 50px; padding: 10px; display: inline-block; transition: transform 0.1s; }
+.draggable:active { transform: scale(1.1); cursor: grabbing; }
+.dropzone { border: 4px dashed #bbb; border-radius: 12px; min-height: 100px; width: 100%; max-width: 150px; display: flex; flex-wrap: wrap; align-content: center; justify-content: center; gap: 5px; background: #fdfdfd; padding: 10px; transition: all 0.2s; font-size: 18px;}
+.dropzone.dragover { border-color: var(--teal); background: #e0f7fa; transform: scale(1.05); box-shadow: 0 0 15px rgba(20,163,139,0.3); }
+.dropzone.ok { border-color: var(--leaf); background: #e8f5e9; color: var(--leaf); font-weight: bold;}
+.plates-area { display: flex; justify-content: space-around; width: 100%; gap: 10px; }
+.plate-col { display: flex; flex-direction: column; align-items: center; flex: 1; }
+
+/* Interactive Clock Styles */
+.clock-container { display: flex; flex-direction: column; align-items: center; margin: 20px 0; }
+.clock-wrapper { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px;}
+.clock { width: 200px; height: 200px; border-radius: 50%; border: 8px solid var(--ink); background: #fff; position: relative; margin: 0 auto; box-shadow: 0 10px 20px rgba(0,0,0,0.1); touch-action: none;}
+.clock::after { content: ''; width: 16px; height: 16px; background: var(--ink); border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; }
+.num { position: absolute; font-weight: bold; font-size: 18px; color: var(--ink); text-align: center; width: 30px; height: 30px; line-height: 30px; }
+
+/* Position numbers using CSS trigonometric functions */
+.n12 { top: 5px; left: 50%; transform: translateX(-50%); }
+.n1 { top: 15px; right: 35px; }
+.n2 { top: 40px; right: 15px; }
+.n3 { top: 50%; right: 5px; transform: translateY(-50%); }
+.n4 { bottom: 40px; right: 15px; }
+.n5 { bottom: 15px; right: 35px; }
+.n6 { bottom: 5px; left: 50%; transform: translateX(-50%); }
+.n7 { bottom: 15px; left: 35px; }
+.n8 { bottom: 40px; left: 15px; }
+.n9 { top: 50%; left: 5px; transform: translateY(-50%); }
+.n10 { top: 40px; left: 15px; }
+.n11 { top: 15px; left: 35px; }
+
+.hand { position: absolute; background: var(--ink); transform-origin: bottom center; border-radius: 6px; z-index: 5; pointer-events: none;}
+.hour-hand { width: 8px; height: 55px; top: 45px; left: calc(50% - 4px); background: var(--ink); transition: transform 0.3s ease;}
+.min-hand { width: 6px; height: 75px; top: 25px; left: calc(50% - 3px); background: var(--coral); }
+
+.clock-task-box { display: flex; flex-direction: column; align-items: center; background: #fff; padding: 15px; border-radius: 15px; border: 2px solid var(--line); width: 100%; max-width: 260px; margin-bottom:15px;}
+.task-title { font-size: 20px; font-weight: bold; margin-bottom: 10px; color: var(--plum); }
+
+/* Feedback Overlay */
+#fb-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.9); display: none; align-items: center; justify-content: center; flex-direction: column; z-index: 9999; pointer-events: none; }
+#fb-overlay.show { display: flex; }
+#fb-overlay .icon { font-size: 120px; animation: popIn 0.3s ease-out; }
+#fb-overlay .text { font-size: 36px; font-weight: 900; padding: 10px 30px; border-radius: 20px; color: #fff; margin-top: 10px; animation: popIn 0.4s ease-out; text-align:center; }
+#fb-overlay.good .text { background: var(--leaf); }
+#fb-overlay.bad .text { background: #f08a24; }
+@keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+/* Certificate */
+#cert { border: 8px solid #d4af37; background: radial-gradient(circle, #fffdf2 60%, #fff1bd 100%); border-radius: 10px; padding: 20px 15px; text-align: center; margin: 20px auto; max-width: 700px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.2); position: relative; }
+#cert::before { content: ''; position: absolute; top: 4px; left: 4px; right: 4px; bottom: 4px; border: 2px solid #c9972b; border-radius: 6px; pointer-events: none; }
+#cert h1 { font-size: 24px; color: #8a5a00; margin: 0 0 5px 0; font-family: "Noto Sans Telugu", serif; text-transform: uppercase; letter-spacing: 1px;}
+#cert .subtitle { font-size: 14px; color: #555; margin-bottom: 15px; font-style: italic;}
+#cert .name { font-size: 30px; font-weight: 900; color: var(--plum); font-family: "Noto Sans Telugu", serif; font-style: italic; border-bottom: 2px dashed #c9972b; display: inline-block; padding: 0 15px; margin: 5px 0;}
+#cert .details { font-size: 14px; line-height: 1.6; margin: 15px auto; max-width: 600px; text-align: left; background: #fff; padding: 12px 15px; border-radius: 10px; border: 1px solid #eee;}
+#cert .details b { color: var(--coral); }
+#cert .signatures { display: flex; justify-content: space-around; margin-top: 30px; font-weight: bold; font-size: 14px; flex-wrap: wrap; gap: 10px;}
+#cert .signatures div { text-align: center; }
+#cert .signatures span { display: block; border-top: 2px solid #333; margin-bottom: 5px; width: 110px; }
+
+@media(min-width: 600px) {
+  #cert { padding: 30px; }
+  #cert h1 { font-size: 32px; }
+  #cert .name { font-size: 40px; }
+  #cert .details { font-size: 16px; }
+  .dropzone { max-width: 180px; min-height: 150px;}
+  .clock { width: 180px; height: 180px; }
+  .num { font-size: 16px; width: 26px; height: 26px; line-height: 26px;}
+  .hour-hand { height: 50px; top: 40px; width: 7px; left: calc(50% - 3.5px); }
+  .min-hand { height: 65px; top: 25px; width: 5px; left: calc(50% - 2.5px); }
+}
+</style>
+</head>
+<body>
+
+<div class="bar" role="toolbar" aria-label="Voice controls">
+  <span>🔊 వాయిస్:</span>
+  <button id="autoBtn" class="off" aria-pressed="false">ఆటో: ఆఫ్</button>
+  <label>వేగం <select id="rate"><option value=".7">నెమ్మది</option><option value=".9" selected>సాధారణం</option><option value="1.1">వేగం</option></select></label>
+  <button class="chip" id="musicBtn" style="font-size:13px;background:#ffc94a;color:#000">🎵 సంగీతం: ఆఫ్</button>
+  <button class="stop" id="stopBtn">⏹ ఆపు</button>
+</div>
+
+<header class="hero">
+  <h1>సమయం</h1>
+  <p>యూనిట్ 8 · 2వ తరగతి గణితం. ఋతువులు, క్యాలెండర్, గడియారం మరియు దిక్కులు నేర్చుకుందాం!</p>
+  <button class="big" id="startBtn">▶ నేర్చుకోవడం ప్రారంభించు</button>
+</header>
+
+<main>
+
+<!-- 1. Physical Domain -->
+<section id="physical" data-read="ఋతువులు మరియు దిక్కుల గురించి నేర్చుకుందాం. మొదట ఋతువును దాని చిత్రంతో జత చేయండి. రెండవది, సారా బడికి చేరుకోవడానికి దిక్కులను అనుసరించండి.">
+  <button class="rd" data-rd>🔊 సూచనలు వినండి</button>
+  <span class="tag">🖐️ శారీరక అభివృద్ధి</span>
+  
+  <h2>యాక్టివిటీ 1: ఋతువులను జత చేయండి</h2>
+  <div class="how">ఋతువు పేరును దాని చిత్రానికి లాగి వదలండి.</div>
+  <div class="grid" id="seasonMatchBox" style="grid-template-columns: repeat(3, 1fr);"></div>
+  <div id="seasonSourceWrapper" style="margin-top:10px;"></div>
+  <div class="ctl" style="justify-content:center; margin-top:10px;"><button id="resetSeason" class="chip">↺ మళ్లీ ప్రారంభించు</button></div>
+  <div class="msg" id="seasonMsg"></div>
+
+  <hr style="border:1px dashed var(--line); margin:20px 0;">
+
+  <h2>యాక్టివిటీ 2: దిక్కులను అనుసరించండి</h2>
+  <div class="how">సారా ఇంటి నుండి బడికి వెళ్లడానికి సరైన దిక్కులను ఉపయోగించండి (తూర్పు, ఆ తర్వాత ఉత్తరం).</div>
+  <div class="ctl" style="justify-content:center; gap:10px;">
+    <button class="chip" onclick="moveSara('North')">⬆️ ఉత్తరం</button>
+    <button class="chip" onclick="moveSara('South')">⬇️ దక్షిణం</button>
+    <button class="chip" onclick="moveSara('East')">➡️ తూర్పు</button>
+    <button class="chip" onclick="moveSara('West')">⬅️ పడమర</button>
+  </div>
+  <div class="arr" style="justify-content:center; flex-direction:column; align-items:center; min-height:120px;">
+    <div style="font-size:60px; transition: transform 0.5s ease;" id="saraObj">🏠</div>
+    <div id="saraMsg" class="msg" style="margin-top:10px;">సారా ఇంట్లో ఉంది.</div>
+  </div>
+  <div class="ctl" style="justify-content:center;"><button id="resetSara" class="chip">↺ మళ్లీ ప్రారంభించు</button></div>
+</section>
+
+<!-- 2. Cognitive Domain -->
+<section id="cognitive" data-read="గడియారం చదవడం మరియు క్యాలెండర్ అర్థం చేసుకోవడం నేర్చుకుందాం.">
+  <button class="rd" data-rd>🔊 సూచనలు వినండి</button>
+  <span class="tag">🧠 జ్ఞానాత్మక అభివృద్ధి</span>
+  
+  <h2>యాక్టివిటీ 1: గడియారం సెట్ చేయండి (5 టాస్క్‌లు)</h2>
+  <div class="how">గంట ముల్లును సరిచేయడానికి ➕ మరియు ➖ బటన్లను నొక్కండి. తర్వాత చెక్ నొక్కండి.</div>
+  
+  <div class="clock-wrapper" id="clockTasks">
+    <!-- Task 1 -->
+    <div class="clock-task-box">
+      <div class="task-title">సెట్ చేయండి: 7 గంటలు</div>
+      <div class="clock" id="clock1">
+        <div class="num n12">12</div><div class="num n1">1</div><div class="num n2">2</div><div class="num n3">3</div>
+        <div class="num n4">4</div><div class="num n5">5</div><div class="num n6">6</div><div class="num n7">7</div>
+        <div class="num n8">8</div><div class="num n9">9</div><div class="num n10">10</div><div class="num n11">11</div>
+        <div class="hand hour-hand" id="h1"></div>
+        <div class="hand min-hand" id="m1" style="transform: rotate(0deg);"></div>
+      </div>
+      <div class="ctl" style="justify-content:center; margin-top:10px;">
+        <button class="chip" onclick="changeHour(1, -1)">➖</button>
+        <button class="chip" onclick="changeHour(1, 1)">➕</button>
+      </div>
+      <button class="chip" style="margin-top:10px;" onclick="checkClock(1, 7)">చెక్</button>
+    </div>
+    <!-- Task 2 -->
+    <div class="clock-task-box">
+      <div class="task-title">సెట్ చేయండి: 3 గంటలు</div>
+      <div class="clock" id="clock2">
+        <div class="num n12">12</div><div class="num n1">1</div><div class="num n2">2</div><div class="num n3">3</div>
+        <div class="num n4">4</div><div class="num n5">5</div><div class="num n6">6</div><div class="num n7">7</div>
+        <div class="num n8">8</div><div class="num n9">9</div><div class="num n10">10</div><div class="num n11">11</div>
+        <div class="hand hour-hand" id="h2"></div>
+        <div class="hand min-hand" id="m2" style="transform: rotate(0deg);"></div>
+      </div>
+      <div class="ctl" style="justify-content:center; margin-top:10px;">
+        <button class="chip" onclick="changeHour(2, -1)">➖</button>
+        <button class="chip" onclick="changeHour(2, 1)">➕</button>
+      </div>
+      <button class="chip" style="margin-top:10px;" onclick="checkClock(2, 3)">చెక్</button>
+    </div>
+    <!-- Task 3 -->
+    <div class="clock-task-box">
+      <div class="task-title">సెట్ చేయండి: 9 గంటలు</div>
+      <div class="clock" id="clock3">
+        <div class="num n12">12</div><div class="num n1">1</div><div class="num n2">2</div><div class="num n3">3</div>
+        <div class="num n4">4</div><div class="num n5">5</div><div class="num n6">6</div><div class="num n7">7</div>
+        <div class="num n8">8</div><div class="num n9">9</div><div class="num n10">10</div><div class="num n11">11</div>
+        <div class="hand hour-hand" id="h3"></div>
+        <div class="hand min-hand" id="m3" style="transform: rotate(0deg);"></div>
+      </div>
+      <div class="ctl" style="justify-content:center; margin-top:10px;">
+        <button class="chip" onclick="changeHour(3, -1)">➖</button>
+        <button class="chip" onclick="changeHour(3, 1)">➕</button>
+      </div>
+      <button class="chip" style="margin-top:10px;" onclick="checkClock(3, 9)">చెక్</button>
+    </div>
+    <!-- Task 4 -->
+    <div class="clock-task-box">
+      <div class="task-title">సెట్ చేయండి: 5 గంటలు</div>
+      <div class="clock" id="clock4">
+        <div class="num n12">12</div><div class="num n1">1</div><div class="num n2">2</div><div class="num n3">3</div>
+        <div class="num n4">4</div><div class="num n5">5</div><div class="num n6">6</div><div class="num n7">7</div>
+        <div class="num n8">8</div><div class="num n9">9</div><div class="num n10">10</div><div class="num n11">11</div>
+        <div class="hand hour-hand" id="h4"></div>
+        <div class="hand min-hand" id="m4" style="transform: rotate(0deg);"></div>
+      </div>
+      <div class="ctl" style="justify-content:center; margin-top:10px;">
+        <button class="chip" onclick="changeHour(4, -1)">➖</button>
+        <button class="chip" onclick="changeHour(4, 1)">➕</button>
+      </div>
+      <button class="chip" style="margin-top:10px;" onclick="checkClock(4, 5)">చెక్</button>
+    </div>
+    <!-- Task 5 -->
+    <div class="clock-task-box">
+      <div class="task-title">సెట్ చేయండి: 12 గంటలు</div>
+      <div class="clock" id="clock5">
+        <div class="num n12">12</div><div class="num n1">1</div><div class="num n2">2</div><div class="num n3">3</div>
+        <div class="num n4">4</div><div class="num n5">5</div><div class="num n6">6</div><div class="num n7">7</div>
+        <div class="num n8">8</div><div class="num n9">9</div><div class="num n10">10</div><div class="num n11">11</div>
+        <div class="hand hour-hand" id="h5"></div>
+        <div class="hand min-hand" id="m5" style="transform: rotate(0deg);"></div>
+      </div>
+      <div class="ctl" style="justify-content:center; margin-top:10px;">
+        <button class="chip" onclick="changeHour(5, -1)">➖</button>
+        <button class="chip" onclick="changeHour(5, 1)">➕</button>
+      </div>
+      <button class="chip" style="margin-top:10px;" onclick="checkClock(5, 12)">చెక్</button>
+    </div>
+  </div>
+  
+  <div class="ctl" style="justify-content:center;">
+    <button id="resetAllClocks" class="chip">↺ అన్ని గడియారాలను రీసెట్ చేయండి</button>
+  </div>
+
+  <hr style="border:1px dashed var(--line); margin:20px 0;">
+
+  <h2>యాక్టివిటీ 2: క్యాలెండర్ రోజులు</h2>
+  <div class="how">నెలకు సరైన రోజుల సంఖ్యను లాగి వదలండి.</div>
+  <div class="grid" style="grid-template-columns: repeat(2, 1fr);" id="calendarBox">
+    <div class="dropzone" style="min-height:80px; display:flex; align-items:center; justify-content:center;" data-month="Jan">జనవరి</div>
+    <div class="dropzone" style="min-height:80px; display:flex; align-items:center; justify-content:center;" data-month="Feb">ఫిబ్రవరి</div>
+  </div>
+  <div class="source-area" id="daysSource" style="min-height:60px; margin-top:10px;"></div>
+  <div class="ctl" style="justify-content:center; margin-top:10px;"><button id="resetCal" class="chip">↺ మళ్లీ ప్రారంభించు</button></div>
+  <div class="msg" id="calMsg"></div>
+</section>
+
+<!-- 3. Socio-emotional Domain -->
+<section id="socio" data-read="మంచి అలవాట్లు మరియు రోజువారీ దినచర్య గురించి నేర్చుకుందాం.">
+  <button class="rd" data-rd>🔊 సూచనలు వినండి</button>
+  <span class="tag">🤝 సామాజిక-భావోద్వేగ అభివృద్ధి</span>
+  
+  <h2>యాక్టివిటీ 1: సారణ్య దినచర్య</h2>
+  <div class="how">సారణ్య ఉదయం 6 గంటలకు నిద్ర లేస్తుంది, రాత్రి 9 గంటలకు నిద్రపోతుంది. మధ్యాహ్నం 12 గంటలకు ఆమె ఏమి చేయాలి?</div>
+  <div class="ctl" id="routineBtns" style="justify-content:center;">
+    <button class="chip" data-ans="lunch">🍽️ మధ్యాహ్న భోజనం</button>
+    <button class="chip" data-ans="sleep">🛌 నిద్ర</button>
+    <button class="chip" data-ans="play">⚽ ఆట</button>
+  </div>
+  <div class="msg" id="routineMsg"></div>
+
+  <hr style="border:1px dashed var(--line); margin:20px 0;">
+
+  <h2>యాక్టివిటీ 2: మంచి అలవాటు</h2>
+  <div class="how">ప్రతిరోజూ పాటించాల్సిన మంచి అలవాటు ఏది?</div>
+  <div class="ctl" id="goodHabitBtns" style="justify-content:center;">
+    <button class="chip" data-ans="early">ఉదయాన్నే నిద్ర లేవడం</button>
+    <button class="chip" data-ans="late">మధ్యాహ్నం వరకు నిద్రపోవడం</button>
+  </div>
+  <div class="msg" id="goodHabitMsg"></div>
+</section>
+
+<!-- 4. Language Domain -->
+<section id="language" data-read="ఋతువులు మరియు సమయానికి సంబంధించిన పదాలు నేర్చుకుందాం.">
+  <button class="rd" data-rd>🔊 సూచనలు వినండి</button>
+  <span class="tag">🗣️ భాషా అభివృద్ధి</span>
+  
+  <h2>యాక్టివిటీ 1: ఋతువును జత చేయండి</h2>
+  <div class="how">ఇచ్చిన క్లూ కి సరైన ఋతువును నొక్కండి.</div>
+  <div class="ctl" id="langMatch1" style="justify-content:center; margin-bottom:10px;">
+    <b>వేడి సూర్యుడు, నీరు తాగడం: </b>
+    <button class="chip" data-ans="summer">వేసవి</button>
+    <button class="chip" data-ans="winter">చలికాలం</button>
+  </div>
+  <div class="ctl" id="langMatch2" style="justify-content:center;">
+    <b>గొడుగు, వర్షం: </b>
+    <button class="chip" data-ans="rainy">వర్షాకాలం</button>
+    <button class="chip" data-ans="spring">వసంతకాలం</button>
+  </div>
+  <div class="msg" id="langMsg"></div>
+
+  <hr style="border:1px dashed var(--line); margin:20px 0;">
+
+  <h2>యాక్టివిటీ 2: సమయాన్ని చదవండి</h2>
+  <div class="how">సమయాన్ని వినడానికి బటన్ నొక్కండి.</div>
+  <div class="ctl" style="justify-content:center;"><button id="readTimeBtn">🔊 "ఇది 6 గంటలు" చదువు</button></div>
+  <div class="eq" id="readTimeShow" style="display:none;">ఇది 6 గంటలు.</div>
+</section>
+
+<!-- 5. Aesthetic Domain -->
+<section id="aesthetic" data-read="పండుగల ఋతువులకు రంగులు వేద్దాం మరియు నమూనాలు తయారు చేద్దాం.">
+  <button class="rd" data-rd>🔊 సూచనలు వినండి</button>
+  <span class="tag">🎨 సౌందర్య అభివృద్ధి</span>
+  
+  <h2>యాక్టివిటీ 1: పండుగకు రంగు వేయండి</h2>
+  <div class="how">దీపావళి జరుపుకునే ఋతువును నొక్కండి.</div>
+  <div class="grid" id="colorFestBox" style="grid-template-columns: repeat(3, 1fr); gap: 10px;"></div>
+  <div class="msg" id="colorFestMsg"></div>
+
+  <hr style="border:1px dashed var(--line); margin:20px 0;">
+
+  <h2>యాక్టివిటీ 2: నమూనా తయారీదారు</h2>
+  <div class="how">ఋతువుల ఎమోజీలతో నమూనాను సృష్టించండి.</div>
+  <div class="ctl" style="justify-content:center;">
+    <select id="emojiSel" style="font-size:20px; padding:5px;">
+      <option value="🌸">🌸 వసంతం</option>
+      <option value="☀️">☀️ వేసవి</option>
+      <option value="🌧️">🌧️ వర్షం</option>
+      <option value="❄️">❄️ చలి</option>
+    </select>
+    <select id="countSel" style="font-size:20px; padding:5px;">
+      <option value="3">3 సార్లు</option>
+      <option value="4">4 సార్లు</option>
+      <option value="5">5 సార్లు</option>
+    </select>
+    <button id="makePattern">నమూనా చేయి</button>
+  </div>
+  <div class="arr" id="patternShow" style="justify-content:center; align-items:center; gap:5px; min-height:50px; border:2px solid var(--line); padding:10px; border-radius:10px;"></div>
+</section>
+
+<!-- Domain Tour -->
+<section id="domainReview" style="background:linear-gradient(135deg,#fff7d6,#e0f7fa); border:3px dashed var(--plum);">
+  <h2>🎯 మనం ఏమి నేర్చుకున్నాం?</h2>
+  <div class="how">క్విజ్ ప్రారంభించే ముందు, ఈ పాఠంలో మనం సాధించిన 5 అభివృద్ధి లక్ష్యాలను ఒకసారి గుర్తు చేసుకుందాం!</div>
+  <div class="ctl">
+    <button id="startDomainTour" style="background:var(--plum);font-size:20px;padding:.6em 1.2em">▶ డొమైన్స్ టూర్ ప్రారంభించు</button>
+  </div>
+  <div class="grid" id="domainTourGrid" style="margin-top:15px; opacity:0.5; transition:opacity 0.5s">
+    <div class="dom d1" id="tourD1"><span class="ic">🖐️</span><b>1. శారీరక</b><small>ఋతువులను జత చేయడం మరియు దిక్కులను అనుసరించడం.</small></div>
+    <div class="dom d2" id="tourD2"><span class="ic">🧠</span><b>2. జ్ఞానాత్మక</b><small>గడియారం మరియు క్యాలెండర్ నేర్చుకోవడం.</small></div>
+    <div class="dom d3" id="tourD3"><span class="ic">🤝</span><b>3. సామాజిక</b><small>దినచర్య మరియు మంచి అలవాట్లు.</small></div>
+    <div class="dom d4" id="tourD4"><span class="ic">🗣️</span><b>4. భాషా</b><small>సమయం మరియు ఋతువుల పదాలు.</small></div>
+    <div class="dom d5" id="tourD5"><span class="ic">🎨</span><b>5. సౌందర్య</b><small>పండుగలకు రంగులు మరియు నమూనాలు.</small></div>
+  </div>
+</section>
+
+<!-- Quiz -->
+<section id="quiz" data-read="క్విజ్ సమయం! పది ప్రశ్నలు ఉన్నాయి. మొదటి ప్రయత్నంలో సరైన సమాధానం చెబితే రెండు స్టార్లు, రెండో ప్రయత్నంలో చెబితే ఒక స్టార్ వస్తుంది.">
+  <button class="rd" data-rd>🔊 సూచనలు వినండి</button>
+  <span class="tag">అన్ని లక్ష్యాలు</span>
+  <h2>🏆 క్విజ్: 10 ప్రశ్నలు</h2>
+  <div id="qbox"></div>
+</section>
+
+<!-- Report -->
+<section id="rep" data-read="ఉపాధ్యాయుల కోసం పురోగతి నివేదిక.">
+  <button class="rd" data-rd>🔊 సూచనలు వినండి</button>
+  <h2>📋 పురోగతి నివేదిక (ఉపాధ్యాయులకు)</h2>
+  <div class="ctl"><button id="rShow">ఫలితాలు చూపించు</button><button id="rClear" class="chip">🗑 తొలగించు</button></div>
+  <div id="repBox"></div>
+</section>
+
+</main>
+
+<footer style="text-align:center;padding:20px;font-size:15px;color:var(--ink);background:var(--paper);margin-top:20px;border-top:3px solid var(--line);border-radius:20px;">
+  <b style="font-size:17px">తయారీ: టి.ఎన్. శివాజీ, SGT, మన్యం</b><br>
+  ఆధారం: 2వ తరగతి గణితం, యూనిట్ 8 "సమయం" (AP SCERT).
+</footer>
+
+<div id="fb-overlay"><div class="icon"></div><div class="text"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+let auto=false,rate=.9,voice=null,last=null,AC=null;
+let isMusicPlaying = false, musicInterval = null;
+const toast=m=>{const t=$('#toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',3000)};
+
+const hasVoice = 'speechSynthesis' in window;
+
+const sc=v=>{
+  let s=0; const n=v.name;
+  if(/telugu/i.test(n)) s+=100; 
+  if(/te-IN/i.test(v.lang)) s+=50;
+  if(/natural|neural|online/i.test(n))s+=20;
+  if(/espeak|compact|novelty/i.test(n))s-=40;
+  return s
+};
+let vs=[],tok=0;
+function pick(){
+  if(!hasVoice)return;
+  vs=speechSynthesis.getVoices().filter(v=>/^te/i.test(v.lang) || /telugu/i.test(v.name)).sort((a,b)=>sc(b)-sc(a));
+  if(vs.length>0) voice=vs[0];
+}
+if(hasVoice){speechSynthesis.onvoiceschanged=pick;pick()}
+
+function clr(){$$('.speaking').forEach(e=>e.classList.remove('speaking'))}
+function stopAll(){tok++;if(hasVoice)speechSynthesis.cancel();clr()}
+
+function say(t,el,cb){
+  if(!hasVoice){toast('వాయిస్ సపోర్ట్ లేదు');return}
+  const my=++tok; speechSynthesis.cancel(); clr(); if(el)el.classList.add('speaking');
+  const txt=t.replace(/÷/g,' భాగహారం ').replace(/×/g,' గుణాలు ').replace(/\+/g,' ప్లస్ ').replace(/=/g,' సమానం ').replace(/₹\s?(\d+)/g,'$1 రూపాయలు ').replace(/_+/g,' ఖాళీ ').replace(/\s+/g,' ');
+  const parts=(txt.match(/[^.!?:]+[.!?:]*/g)||[txt]).map(x=>x.trim()).filter(Boolean);
+  let k=0;
+  (function nx(){
+    if(my!==tok)return;
+    if(k>=parts.length){if(el)el.classList.remove('speaking');if(cb)cb();return}
+    const part=parts[k++],u=new SpeechSynthesisUtterance(part);
+    u.rate=rate;u.pitch=1.05;u.volume=1; u.lang=voice?voice.lang:'te-IN'; if(voice)u.voice=voice;
+    u.onend=()=>setTimeout(nx,150); u.onerror=(e)=>{console.log("Speech err",e);setTimeout(nx,0)};
+    if(speechSynthesis.paused) speechSynthesis.resume(); speechSynthesis.speak(u);
+  })();
+}
+
+function initAudio(){if(!AC){ try{ AC = new (window.AudioContext || window.webkitAudioContext)(); }catch(e){} } if(AC && AC.state === 'suspended'){ AC.resume(); }}
+function playTone(freq, duration, vol=0.05) {if(!AC) return;const osc = AC.createOscillator();const gain = AC.createGain();osc.type = 'triangle';osc.frequency.value = freq;gain.gain.setValueAtTime(vol, AC.currentTime);gain.gain.exponentialRampToValueAtTime(0.001, AC.currentTime + duration);osc.connect(gain);gain.connect(AC.destination);osc.start();osc.stop(AC.currentTime + duration);}
+
+function toggleMusic() {
+  initAudio(); const btn = $('#musicBtn');
+  if(isMusicPlaying) { clearInterval(musicInterval); isMusicPlaying = false; btn.textContent = '🎵 సంగీతం: ఆఫ్'; btn.style.background = '#ffc94a'; btn.style.color = '#000'; } 
+  else { isMusicPlaying = true; btn.textContent = '🎵 సంగీతం: ఆన్'; btn.style.background = '#6cbf3f'; btn.style.color = '#fff';
+    const melody = [261.63, 329.63, 392.00, 329.63, 293.66, 349.23, 440.00, 349.23, 329.63, 392.00, 523.25, 392.00, 293.66, 349.23, 392.00, 293.66]; 
+    let i = 0;
+    musicInterval = setInterval(() => { if(!isMusicPlaying) return; playTone(melody[i % melody.length], 0.8, 0.02); i++; }, 800);
+  }
+}
+$('#musicBtn').onclick = toggleMusic;
+
+function setAuto(v){auto=v;const b=$('#autoBtn');b.textContent='ఆటో: '+(v?'ఆన్':'ఆఫ్');b.className=v?'on':'off';}
+$('#autoBtn').onclick=()=>{setAuto(!auto);if(auto){last=null;check()}else stopAll()};
+$('#stopBtn').onclick=stopAll;
+$('#rate').onchange=e=>rate=+e.target.value;
+
+$('#startBtn').onclick=()=>{
+  initAudio(); if(!hasVoice){toast('వాయిస్ సపోర్ట్ లేదు');return}
+  speechSynthesis.speak(new SpeechSynthesisUtterance(' '));
+  setAuto(true); if(!isMusicPlaying) toggleMusic();
+  last=null; $('#physical').scrollIntoView({behavior:'smooth'}); setTimeout(check,700);
+};
+
+$$('[data-rd]').forEach(b=>b.onclick=()=>{const s=b.closest('section');say(s.dataset.read,s)});
+document.addEventListener('click',e=>{const d=e.target.closest('[data-say]');if(d)say(d.dataset.say,d)});
+
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&auto&&last!==e.target){last=e.target;say(e.target.dataset.read,e.target)}})},{threshold:.55});
+$$('section[data-read]').forEach(s=>io.observe(s));
+function check(){const m=innerHeight/2;const s=$$('section[data-read]').find(x=>{const r=x.getBoundingClientRect();return r.top<m&&r.bottom>m});if(s&&auto){last=s;say(s.dataset.read,s)}}
+
+// --- 1. PHYSICAL DOMAIN ---
+let draggedSeason = null;
+function setupSeasonMatch() {
+  const seasons = [
+    { id: 'spring', emoji: '🌸', name: 'వసంతం' },
+    { id: 'summer', emoji: '☀️', name: 'వేసవి' },
+    { id: 'rainy', emoji: '🌧️', name: 'వర్షాకాలం' }
+  ];
+  let html = seasons.map(s => `
+    <div style="text-align:center;">
+      <div style="font-size:50px; margin-bottom:10px;">${s.emoji}</div>
+      <div class="dropzone" style="min-height:50px; padding:5px;" data-season="${s.id}">ఇక్కడ వదలండి</div>
+    </div>
+  `).join('');
+  $('#seasonMatchBox').innerHTML = html;
+  
+  let dragHtml = seasons.map(s => `
+    <div class="draggable" style="font-size:18px; padding:8px; background:#fff; border:2px solid #ddd; border-radius:10px;" draggable="true" id="drag-${s.id}" data-season="${s.id}">${s.name}</div>
+  `).join('');
+  
+  $('#seasonSourceWrapper').innerHTML = `<div class="source-area" id="seasonSource" style="margin-top:10px;">${dragHtml}</div>`;
+
+  $$('#seasonSource .draggable').forEach(el => {
+    el.addEventListener('dragstart', e => { draggedSeason = e.target; });
+    el.addEventListener('touchstart', e => { draggedSeason = e.target; e.preventDefault(); }, {passive: false});
+  });
+
+  $$('#seasonMatchBox .dropzone').forEach(zone => {
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+    zone.addEventListener('dragleave', e => { zone.classList.remove('dragover'); });
+    zone.addEventListener('drop', e => {
+      e.preventDefault(); zone.classList.remove('dragover');
+      if(draggedSeason) { 
+        handleSeasonDrop(draggedSeason, zone);
+        draggedSeason = null; 
+      }
+    });
+    zone.addEventListener('touchmove', e => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const el = document.elementFromPoint(touch.clientX, touch.clientY);
+      if(el && el.classList.contains('dropzone')) el.classList.add('dragover');
+      else zone.classList.remove('dragover');
+    }, {passive: false});
+    zone.addEventListener('touchend', e => {
+      zone.classList.remove('dragover');
+      const touch = e.changedTouches[0];
+      const el = document.elementFromPoint(touch.clientX, touch.clientY);
+      if(el && el.classList.contains('dropzone') && draggedSeason) {
+        handleSeasonDrop(draggedSeason, el);
+        draggedSeason = null;
+      }
+    });
+  });
+}
+
+function handleSeasonDrop(el, zone) {
+  if(el.dataset.season === zone.dataset.season) {
+    zone.textContent = el.textContent;
+    zone.classList.add('ok');
+    el.style.display = 'none';
+    $('#seasonMsg').textContent = "✅ సరైనది!";
+    if($$('#seasonMatchBox .dropzone.ok').length === 3) {
+      fb(true, 2); say("అద్భుతం! మీరు అన్ని ఋతువులను జత చేశారు.");
+    }
+  } else {
+    zone.classList.add('no');
+    setTimeout(() => zone.classList.remove('no'), 800);
+    $('#seasonMsg').textContent = "❌ మళ్లీ ప్రయత్నించు!";
+    fb(false, 0);
+  }
+}
+$('#resetSeason').onclick = () => { 
+  setupSeasonMatch(); 
+  $('#seasonMsg').textContent = ''; 
+};
+setupSeasonMatch();
+
+// Directions Game
+let saraPos = 'Home';
+$('#resetSara').onclick = () => { 
+  saraPos = 'Home'; 
+  $('#saraObj').textContent = '🏠'; 
+  $('#saraObj').style.transform = 'translate(0,0)'; 
+  $('#saraMsg').textContent = 'సారా ఇంట్లో ఉంది.'; 
+  $('#saraMsg').style.color = 'var(--teal)';
+};
+function moveSara(dir) {
+  if(saraPos === 'Home' && dir === 'East') {
+    saraPos = 'Path';
+    $('#saraObj').textContent = '🚶‍♀️';
+    $('#saraObj').style.transform = 'translateX(50px)';
+    $('#saraMsg').textContent = 'సారా దారిలో ఉంది. ఇప్పుడు ఉత్తరం వైపు వెళ్లండి.';
+    say("బాగుంది! ఇప్పుడు ఉత్తరం వైపు వెళ్లండి.");
+  } else if(saraPos === 'Path' && dir === 'North') {
+    saraPos = 'School';
+    $('#saraObj').textContent = '🏫';
+    $('#saraObj').style.transform = 'translate(50px, -50px)';
+    $('#saraMsg').textContent = '✅ సారా బడికి చేరుకుంది!';
+    $('#saraMsg').style.color = 'var(--leaf)';
+    fb(true, 2); say("అద్భుతం! సారా బడికి చేరుకుంది.");
+  } else {
+    $('#saraMsg').textContent = '❌ తప్పు దిక్కు. మళ్లీ ప్రయత్నించు!';
+    $('#saraMsg').style.color = 'var(--coral)';
+    fb(false, 0);
+    setTimeout(() => { $('#saraMsg').textContent = saraPos === 'Home' ? 'సారా ఇంట్లో ఉంది.' : 'సారా దారిలో ఉంది.'; $('#saraMsg').style.color = 'var(--teal)'; }, 1500);
+  }
+}
+
+// --- 2. COGNITIVE DOMAIN ---
+let clockStates = {1: 12, 2: 12, 3: 12, 4: 12, 5: 12};
+
+function changeHour(id, delta) {
+  let newHour = clockStates[id] + delta;
+  if(newHour > 12) newHour = 1;
+  if(newHour < 1) newHour = 12;
+  clockStates[id] = newHour;
+  
+  const hHand = $('#h' + id);
+  hHand.style.transform = `rotate(${newHour * 30}deg)`;
+  $('#clock' + id).style.borderColor = 'var(--ink)';
+}
+
+function checkClock(id, targetHour) {
+  if(clockStates[id] === targetHour) {
+    fb(true, 2); say(`సరైనది! ఇది ${targetHour} గంటలు.`);
+    $('#clock' + id).style.borderColor = 'var(--leaf)';
+  } else {
+    fb(false, 0); say(`మళ్లీ ప్రయత్నించు! మీరు ${clockStates[id]} గంటలు సెట్ చేశారు.`);
+    $('#clock' + id).style.borderColor = 'var(--coral)';
+    setTimeout(() => { $('#clock' + id).style.borderColor = 'var(--ink)'; }, 1500);
+  }
+}
+
+$('#resetAllClocks').onclick = () => {
+  clockStates = {1: 12, 2: 12, 3: 12, 4: 12, 5: 12};
+  for (let i = 1; i <= 5; i++) {
+    $('#h' + i).style.transform = 'rotate(0deg)';
+    $('#m' + i).style.transform = 'rotate(0deg)';
+    $('#clock' + i).style.borderColor = 'var(--ink)';
+  }
+};
+
+// Calendar
+let draggedDay = null;
+function setupCalendar() {
+  let sourceHtml = `
+    <div class="draggable" style="font-size:20px; padding:10px; background:#fff; border:2px solid #ddd; border-radius:10px;" draggable="true" id="d31">31 రోజులు</div>
+    <div class="draggable" style="font-size:20px; padding:10px; background:#fff; border:2px solid #ddd; border-radius:10px;" draggable="true" id="d28">28 రోజులు</div>
+  `;
+  $('#daysSource').innerHTML = sourceHtml;
+  
+  $$('#daysSource .draggable').forEach(el => {
+    el.addEventListener('dragstart', e => { draggedDay = e.target; });
+    el.addEventListener('touchstart', e => { draggedDay = e.target; e.preventDefault(); }, {passive: false});
+  });
+
+  $$('#calendarBox .dropzone').forEach(zone => {
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+    zone.addEventListener('dragleave', e => { zone.classList.remove('dragover'); });
+    zone.addEventListener('drop', e => {
+      e.preventDefault(); zone.classList.remove('dragover');
+      if(draggedDay) { 
+        handleCalDrop(draggedDay, zone);
+        draggedDay = null; 
+      }
+    });
+    zone.addEventListener('touchmove', e => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const el = document.elementFromPoint(touch.clientX, touch.clientY);
+      if(el && el.classList.contains('dropzone')) el.classList.add('dragover');
+      else zone.classList.remove('dragover');
+    }, {passive: false});
+    zone.addEventListener('touchend', e => {
+      zone.classList.remove('dragover');
+      const touch = e.changedTouches[0];
+      const el = document.elementFromPoint(touch.clientX, touch.clientY);
+      if(el && el.classList.contains('dropzone') && draggedDay) {
+        handleCalDrop(draggedDay, el);
+        draggedDay = null;
+      }
+    });
+  });
+}
+function handleCalDrop(el, zone) {
+  if((zone.dataset.month === 'Jan' && el.id === 'd31') || (zone.dataset.month === 'Feb' && el.id === 'd28')) {
+    zone.style.background = 'var(--leaf)';
+    zone.style.color = '#fff';
+    zone.textContent = zone.textContent.split(' ')[0] + ' ' + el.textContent;
+    el.style.display = 'none';
+    $('#calMsg').textContent = "✅ సరైనది!";
+    
+    if($$('#calendarBox .dropzone').length === 2 && $$('#calendarBox .dropzone').every(z => z.style.background === 'var(--leaf)' || z.style.backgroundColor === 'rgb(108, 191, 63)')) {
+       fb(true, 2); say("అద్భుతం! మీరు రోజులను సరిగ్గా జత చేశారు.");
+    }
+  } else {
+    zone.classList.add('no');
+    setTimeout(() => zone.classList.remove('no'), 800);
+    $('#calMsg').textContent = "❌ మళ్లీ ప్రయత్నించు!";
+    fb(false, 0);
+  }
+}
+$('#resetCal').onclick = () => {
+  $('#calendarBox').innerHTML = `
+    <div class="dropzone" style="min-height:80px; display:flex; align-items:center; justify-content:center;" data-month="Jan">జనవరి</div>
+    <div class="dropzone" style="min-height:80px; display:flex; align-items:center; justify-content:center;" data-month="Feb">ఫిబ్రవరి</div>
+  `;
+  setupCalendar();
+  $('#calMsg').textContent = '';
+};
+setupCalendar();
+
+// --- 3. SOCIO-EMOTIONAL DOMAIN ---
+$('#routineBtns').onclick = (e) => {
+  const b = e.target.closest('button');
+  if(!b || b.classList.contains('ok') || $('#routineMsg').textContent.includes("సరైనది")) return;
+  if(b.dataset.ans === "lunch") {
+    b.classList.add('ok'); fb(true, 2);
+    $('#routineMsg').textContent = "✅ సరైనది! మనం మధ్యాహ్నం 12 గంటలకు భోజనం చేయాలి.";
+  } else {
+    b.classList.add('no'); fb(false, 0);
+    setTimeout(() => b.classList.remove('no'), 800);
+  }
+};
+$('#goodHabitBtns').onclick = (e) => {
+  const b = e.target.closest('button');
+  if(!b || b.classList.contains('ok') || $('#goodHabitMsg').textContent.includes("సరైనది")) return;
+  if(b.dataset.ans === "early") {
+    b.classList.add('ok'); fb(true, 1);
+    $('#goodHabitMsg').textContent = "✅ సరైనది! ఉదయాన్నే నిద్ర లేవడం మంచి అలవాటు.";
+  } else {
+    b.classList.add('no'); fb(false, 0);
+    setTimeout(() => b.classList.remove('no'), 800);
+  }
+};
+
+// --- 4. LANGUAGE DOMAIN ---
+$('#langMatch1').onclick = (e) => {
+  const b = e.target.closest('button');
+  if(!b || b.classList.contains('ok')) return;
+  if(b.dataset.ans === "summer") { b.classList.add('ok'); fb(true, 1); } 
+  else { b.classList.add('no'); fb(false, 0); setTimeout(() => b.classList.remove('no'), 800); }
+};
+$('#langMatch2').onclick = (e) => {
+  const b = e.target.closest('button');
+  if(!b || b.classList.contains('ok')) return;
+  if(b.dataset.ans === "rainy") { b.classList.add('ok'); fb(true, 1); } 
+  else { b.classList.add('no'); fb(false, 0); setTimeout(() => b.classList.remove('no'), 800); }
+};
+$('#readTimeBtn').onclick = () => {
+  $('#readTimeShow').style.display = 'block';
+  say("ఇది 6 గంటలు.", $('#readTimeShow'));
+  fb(true, 1);
+};
+
+// --- 5. AESTHETIC DOMAIN ---
+function setupColorFest() {
+  const items = [
+    { emoji: '☀️', name: 'వేసవి', id: 'summer' },
+    { emoji: '❄️', name: 'చలికాలం', id: 'winter' },
+    { emoji: '🌧️', name: 'వర్షాకాలం', id: 'rainy' }
+  ];
+  $('#colorFestBox').innerHTML = items.map(it => `
+    <div class="dropzone" style="font-size:40px; cursor:pointer; min-height:80px; border-radius:50%;" onclick="colorFest(this, '${it.id}')">${it.emoji}</div>
+  `).join('');
+}
+window.colorFest = (el, id) => {
+  if(el.classList.contains('ok')) return;
+  if(id === 'winter') {
+    el.style.background = '#ff9f43';
+    el.classList.add('ok');
+    $('#colorFestMsg').textContent = "✅ సరైనది! దీపావళి చలికాలం/శరదృతువులో జరుపుకుంటారు.";
+    fb(true, 2); say("సరైనది! దీపావళి చలికాలంలో జరుపుకుంటారు.");
+  } else {
+    el.classList.add('no');
+    setTimeout(() => el.classList.remove('no'), 500);
+    fb(false, 0);
+  }
+};
+setupColorFest();
+
+$('#makePattern').onclick = () => {
+  const emoji = $('#emojiSel').value;
+  const count = +$('#countSel').value;
+  let html = '';
+  for(let i=0; i<count; i++) {
+    html += `<div style="font-size:40px;">${emoji}</div>`;
+  }
+  $('#patternShow').innerHTML = html;
+  say(`ఇక్కడ ${count} ${emoji} నమూనా ఉంది.`);
+  fb(true, 1);
+};
+
+// --- DOMAIN TOUR ---
+const domainTexts = [
+  {id:'tourD1', text:"మొదటిది, శారీరక అభివృద్ధి. మనం ఋతువులను జత చేశాం మరియు దిక్కులను అనుసరించాం."},
+  {id:'tourD2', text:"రెండవది, జ్ఞానాత్మక అభివృద్ధి. మనం గడియారం చదవడం మరియు క్యాలెండర్ నేర్చుకున్నాం."},
+  {id:'tourD3', text:"మూడవది, సామాజిక-భావోద్వేగ అభివృద్ధి. మనం మంచి దినచర్యలు నేర్చుకున్నాం."},
+  {id:'tourD4', text:"నాల్గవది, భాషా అభివృద్ధి. ఋతువులు మరియు సమయాన్ని వివరించే పదాలు నేర్చుకున్నాం."},
+  {id:'tourD5', text:"ఐదవది, సౌందర్య అభివృద్ధి. పండుగల ఋతువులకు రంగులు వేసి నమూనాలు తయారు చేశాం."}
+];
+let isTourRunning = false;
+$('#startDomainTour').onclick = async () => {
+  if(isTourRunning) return;
+  initAudio(); isTourRunning = true;
+  const btn = $('#startDomainTour');
+  btn.textContent = 'టూర్ నడుస్తోంది...'; btn.style.background = 'var(--coral)';
+  $$('#domainTourGrid .dom').forEach(d => d.classList.remove('active'));
+  $('#domainTourGrid').style.opacity = '1';
+  
+  await new Promise(r => { say("మనం నేర్చుకున్న ఐదు అభివృద్ధి లక్ష్యాలను ఒకసారి చూద్దాం.", null, r); });
+  for (let i=0; i<domainTexts.length; i++) {
+    const d = domainTexts[i]; const el = $('#'+d.id);
+    el.classList.add('active'); el.scrollIntoView({behavior:'smooth', block:'center'});
+    await new Promise(r => { say(d.text, el, r); });
+    el.classList.remove('active'); await new Promise(r => setTimeout(r, 200));
+  }
+  await new Promise(r => { say("ఇప్పుడు మనం క్విజ్ ఆడుదాం!", null, r); });
+  btn.textContent = '▶ డొమైన్స్ టూర్ మళ్లీ ప్రారంభించు'; btn.style.background = 'var(--plum)';
+  isTourRunning = false; $('#quiz').scrollIntoView({behavior:'smooth'});
+};
+
+// --- QUIZ ---
+const POOL = [
+  { level: "గుర్తుపెట్టుకోవడం", q: "ఒక రోజులో ఎన్ని గంటలు ఉంటాయి?", o: ["12", "24", "30"], a: 1 },
+  { level: "అర్థం చేసుకోవడం", q: "చిత్రాన్ని చూడండి. ఇది ఏ ఋతువు?", p: "☀️ 🌡️ 🥤", o: ["చలికాలం", "వేసవి", "వర్షాకాలం"], a: 1 },
+  { level: "అన్వయించడం", q: "చిన్న ముల్లు 4 దగ్గర, పొడవైన ముల్లు 12 దగ్గర ఉంటే సమయం ఎంత?", o: ["12 గంటలు", "4 గంటలు", "8 గంటలు"], a: 1 },
+  { level: "విశ్లేషించడం", q: "సారా ఇల్లు పడమరలో ఉంది. బడి తూర్పున ఉంది. ఆమె ఏ దిక్కు వెళ్లాలి?", o: ["తూర్పు", "పడమర", "ఉత్తరం"], a: 0 },
+  { level: "సృష్టించడం", q: "వేసవి తర్వాత ఏ ఋతువు వస్తుంది?", o: ["చలికాలం", "వర్షాకాలం", "వసంతం"], a: 1 },
+  { level: "అర్థం చేసుకోవడం", q: "సూర్యుడు ఏ దిక్కున పొదుస్తాడు?", o: ["ఉత్తరం", "పడమర", "తూర్పు"], a: 2 }
+];
+
+let qs=[],qi=0,tries=0,done=false,res=[],pname='',fbT=null;
+let attemptData = []; 
+let finalScore = 0;
+
+function shuf(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function prep(x){const idx=shuf(x.o.map((_,i)=>i));return Object.assign({},x,{o:idx.map(i=>x.o[i]),a:idx.indexOf(x.a)})}
+function start(){qs=shuf(POOL).slice(0,10).map(prep);qi=0;res=[];attemptData=[];drawQ()}
+
+function tone(f,t,d,ty,g){try{initAudio();const o=AC.createOscillator(),v=AC.createGain(),n=AC.currentTime+t;o.type=ty||'sine';o.frequency.value=f;v.gain.setValueAtTime(g||.15,n);v.gain.exponentialRampToValueAtTime(.001,n+d);o.connect(v);v.connect(AC.destination);o.start(n);o.stop(n+d)}catch(e){}}
+function chime(ok){if(ok){[523,659,784,1047].forEach((f,i)=>tone(f,i*.1,.28))}else{tone(280,0,.22,'triangle',.22)}}
+function confetti(){for(let i=0;i<20;i++){const c=document.createElement('span');c.className='conf';c.textContent=['⭐','🎉','✨','🌟'][i%4];c.style.left=Math.random()*96+'vw';document.body.append(c);setTimeout(()=>c.remove(),2000)}}
+
+function fb(ok, stars, onComplete) {
+  const f=$('#fb-overlay');
+  const icon = f.querySelector('.icon');
+  const text = f.querySelector('.text');
+  let msg = "", voiceMsg = "";
+
+  if(ok) {
+    if(stars === 2) { icon.textContent = "🌟🌟"; msg = "అద్భుతం!"; voiceMsg = "అద్భుతం! రెండు స్టార్లు వచ్చాయి."; }
+    else { icon.textContent = "⭐"; msg = "బాగుంది!"; voiceMsg = "బాగుంది! ఒక స్టార్ వచ్చింది."; }
+    f.className = 'show good'; confetti(); chime(true);
+  } else {
+    icon.textContent = "💪"; msg = "మళ్లీ ప్రయత్నించు!"; voiceMsg = "చింతించకు. నువ్వు చేయగలవు. మళ్లీ ప్రయత్నించు!";
+    f.className = 'show bad'; chime(false);
+  }
+  text.textContent = msg;
+  say(voiceMsg);
+  
+  clearTimeout(fbT);
+  fbT = setTimeout(()=>{ 
+    f.className=''; 
+    if(onComplete) onComplete(); 
+  }, 2000);
+}
+
+const qText=x=>x.q+" ఎంపికలు. "+x.o.map((o,i)=>String.fromCharCode(65+i)+': '+o).join('. ');
+
+function drawQ(){
+  const box=$('#qbox');
+  if(qi>=qs.length)return drawRes();
+  const x=qs[qi];tries=0;done=false;
+  
+  let picHtml = x.p ? `<div class="pic" style="font-size:30px; margin:10px 0;">${x.p}</div>` : '';
+  
+  box.innerHTML=`<div class="prog"><i style="width:${qi/qs.length*100}%"></i></div><div>ప్రశ్న ${qi+1} / ${qs.length} <span class="tag" style="font-size:12px; margin-left:10px">${x.level}</span></div>
+  <div class="q" id="qt" style="margin:10px 0;">${x.q}</div>
+  ${picHtml}
+  <div class="opts" id="optBox">${x.o.map((o,i)=>`<button data-i="${i}">${String.fromCharCode(65+i)}) ${o}</button>`).join('')}</div>
+  <div class="msg" id="msg"></div>`;
+  
+  if(auto) say(qText(x),$('#qt'));
+
+  $$('#optBox button').forEach(b=>b.onclick=()=>{
+    if(done)return;const i=+b.dataset.i;
+    if(i==x.a){
+      done=true;
+      let stars = (tries === 0) ? 2 : 1; 
+      attemptData[qi] = stars;
+      res[qi] = true;
+      b.classList.add('ok');
+      $('#msg').textContent="✅ సరైనది!";
+      
+      fb(true, stars, () => { qi++; drawQ(); });
+      
+    } else {
+      tries++;b.classList.add('no');
+      if(tries>=3){
+        done=true;res[qi]=false;attemptData[qi] = 0;
+        const correctBtn=$(`#optBox button[data-i="${x.a}"]`);
+        correctBtn.classList.add('ok');
+        $('#msg').textContent="❌ సరైన సమాధానం చూపించాం.";
+        
+        say(`సరైన సమాధానం ${x.o[x.a]}.`, null, () => {
+           setTimeout(() => { qi++; drawQ(); }, 1500);
+        });
+        
+      } else {
+        $('#msg').textContent=`🔄 మళ్లీ ప్రయత్నించు (${tries}/3)`;
+        fb(false, 0);
+      }
+    }
+  });
+}
+
+function drawRes(){
+  finalScore = attemptData.reduce((a, b) => a + (b || 0), 0);
+  let lv = ["🥉","కాంస్య పతకం – ప్రాక్టీస్ చేయండి"];
+  if(finalScore >= 16) lv = ["🥇","బంగారు పతకం – గణిత ఛాంపియన్"];
+  else if(finalScore >= 10) lv = ["🥈","వెండి పతకం – గణిత స్టార్"];
+  
+  let starsHTML = "";
+  for(let i=0; i<10; i++) {
+    let s = attemptData[i] || 0;
+    if(s === 2) starsHTML += `<span style="color:#ffc94a;font-size:20px;">★★</span> `;
+    else if(s === 1) starsHTML += `<span style="color:#ffc94a;font-size:20px;">★</span>☆ `;
+    else starsHTML += `<span style="color:#ccc;font-size:20px;">☆☆</span> `;
+  }
+
+  $('#qbox').innerHTML=`<div class="score">🎉 మీ స్కోరు: <b>${finalScore} / 20</b></div><div class="lv">${lv[0]} ${lv[1]}</div>
+  <div class="how" style="text-align:center; font-size:22px; letter-spacing:2px;">${starsHTML}</div>
+  <div class="ctl" style="margin-top:14px"><label>✍️ పేరు: <input id="nm" maxlength="30" placeholder="మీ పేరు రాయండి" style="font:inherit;padding:.4em;border-radius:10px;border:3px solid var(--ink)"></label><button id="mk">🎓 సర్టిఫికెట్ పొందండి</button></div>
+  <div id="certBox"></div><button id="again" class="chip">↺ మళ్లీ ఆడు</button>`;
+  
+  $('#again').onclick=start;
+  
+  $('#mk').onclick=()=>{
+    const name=$('#nm').value.trim();if(!name){toast("దయచేసి మీ పేరు టైప్ చేయండి");return}
+    
+    saveResult(name, finalScore);
+
+    let certDomains = "";
+    if(finalScore >= 16) certDomains = "సమయం, ఋతువులు, క్యాలెండర్ మరియు దిక్కులపై అద్భుతమైన అవగాహన.";
+    else if(finalScore >= 10) certDomains = "సమయంపై మంచి అవగాహన ఉంది. కొంచెం ప్రాక్టీస్ తో పర్ఫెక్ట్ అవుతారు.";
+    else certDomains = "ప్రయత్నం చూపించారు మరియు బేసిక్స్ నేర్చుకున్నారు. ప్రాక్టీస్ కొనసాగించండి!";
+
+    $('#certBox').innerHTML=`<div id="cert">
+      <h1>ప్రశంసా పత్రం</h1>
+      <div class="subtitle">ఇష్టపూర్వకంగా అందజేయబడుతోంది</div>
+      <div class="name">${name}</div>
+      <div class="details">
+        <b>తరగతి:</b> 2<br>
+        <b>సబ్జెక్ట్:</b> గణితం (యూనిట్ 8)<br>
+        <b>స్కోరు:</b> ${finalScore} / 20 స్టార్లు<br>
+        <b>ప్రదర్శన:</b> ${lv[1]}<br>
+        <b>వ్యాఖ్యలు:</b> ${certDomains}
+      </div>
+      <div class="signatures">
+        <div><span></span>తరగతి ఉపాధ్యాయులు</div>
+        <div><span></span>ప్రధానోపాధ్యాయులు</div>
+      </div>
+    </div>
+    <div style="margin-top:15px; text-align:center;">
+      <p style="font-size:14px; color:#555; margin-bottom:8px;">📸 <b>చిట్కా:</b> ఉత్తమ వ్యూహం కోసం, మీ ఫోన్‌ను అడ్డంగా (Landscape) తిప్పి చూడండి.</p>
+      <button onclick="showScreenshotTip()" style="background:var(--teal);">📸 స్క్రీన్‌షాట్ తీసుకో</button>
+    </div>`;
+    
+    $('#certBox').scrollIntoView({behavior:'smooth'});
+    chime(true);confetti();
+    setTimeout(()=>say(`అభినందనలు ${name}! మీరు 20 స్టార్లలో ${finalScore} సాధించారు.`), 800);
+  };
+}
+
+function showScreenshotTip() {
+  toast("📸 దయచేసి ఈ సర్టిఫికెట్‌ను సేవ్ చేయడానికి స్క్రీన్‌షాట్ తీసుకోండి. మంచి వ్యూహం కోసం ఫోన్‌ను అడ్డంగా తిప్పండి!");
+  say("దయచేసి ఈ సర్టిఫికెట్‌ను సేవ్ చేయడానికి స్క్రీన్‌షాట్ తీసుకోండి. మంచి వ్యూహం కోసం ఫోన్‌ను అడ్డంగా తిప్పండి.");
+}
+
+function saveResult(name, score) {
+  try {
+    let reports = JSON.parse(localStorage.getItem('maths_reports_telugu_8') || '[]');
+    reports.push({ name: name, score: score, date: new Date().toLocaleDateString() });
+    localStorage.setItem('maths_reports_telugu_8', JSON.stringify(reports));
+  } catch(e) { console.log("Storage error", e); }
+}
+
+function showRep(){
+  try {
+    let reports = JSON.parse(localStorage.getItem('maths_reports_telugu_8') || '[]');
+    if(reports.length === 0) {
+      $('#repBox').innerHTML = `<div class="msg">ఇంకా ఫలితాలు ఏమీ సేవ్ అవలేదు.</div>`;
+      return;
+    }
+    let html = `<table style="width:100%; max-width:100%; text-align:left;"><tr><th>తేదీ</th><th>విద్యార్థి పేరు</th><th>స్కోరు (20కి)</th></tr>`;
+    reports.forEach(r => {
+      html += `<tr><td>${r.date}</td><td>${r.name}</td><td><b>${r.score}</b></td></tr>`;
+    });
+    html += `</table>`;
+    $('#repBox').innerHTML = html;
+  } catch(e) {
+    $('#repBox').innerHTML = `<div class="msg">ఫలితాలు లోడ్ చేయడంలో లోపం.</div>`;
+  }
+}
+$('#rShow').onclick=showRep;
+$('#rClear').onclick=()=>{if(confirm("అన్ని ఫలితాలను తొలగించాలా?")){localStorage.removeItem('maths_reports_telugu_8');showRep()}};
+
+start();
+</script>
+</body>
+</html>
